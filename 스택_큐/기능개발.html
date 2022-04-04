@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        function solution(progresses, speeds) {
+            let answer = [0]
+            let count = 0;
+            let data = 0;
+            for(let i = 0 ; i < progresses.length ; i++) {
+               let work = (Math.ceil((100 - progresses[i])/speeds[i]));
+                if(work > data) {
+                    if(i !== 0) {
+                        count++
+                        answer.push(0)
+                    }
+                    data = work
+                    answer[count] = answer[count]+1
+
+                } else {
+                    answer[count] = answer[count]+1
+                }
+            }  
+            return answer;
+        }
+
+        const progresses = 	
+        [1, 95, 90, 99, 99, 80, 99, 1, 20]
+        const speeds = [1, 1, 1, 1, 1, 1, 1, 1, 30]
+        solution(progresses, speeds)
+        
+    </script>
+</body>
+</html>
