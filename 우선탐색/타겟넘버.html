@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(numbers, target) {
+            let protoNumbers = numbers;
+            let answer = 0;
+            let check = new Array(numbers.length).fill(0);
+            const DFS = (v) => {
+                if(v === numbers.length) {               
+                    for(let i = 0 ; i < numbers.length ; i++) {                        
+                        if(check[i] === 0) {
+                            numbers[i] = Math.abs(numbers[i])
+                            numbers[i] = -(numbers[i])
+                        } else if(check[i] === 1) {
+                            numbers[i] = Math.abs(numbers[i])
+                        }
+                    }
+                    let sum = numbers.reduce((acc, data) => acc+data, 0)
+                    if(sum === target) {
+                        
+                        answer++;
+                    }
+                } else {
+                    check[v]=1                   
+                    DFS(v+1)
+                    check[v]=0
+                    DFS(v+1)
+                }
+            }
+
+            DFS(0)
+            return answer
+        }
+        
+        const numbers = [1, 1, 1, 1, 1];
+        const target = 3;
+        console.log(solution(numbers, target))
+    </script>
+</body>
+</html>
